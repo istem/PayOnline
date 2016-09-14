@@ -119,3 +119,8 @@ Contact support "PayOnline" to get your MERCHANT_ID and SECURITY_KEY, and define
 
 Also examples of use see in file "example.php"
 
+
+# License
+
+The code in this repository is distributed under the terms of the MIT license.
+
