@@ -36,7 +36,7 @@ class payonlineManagerExample {
 	protected $_merchantId  = '{MERCHANT_ID}'; // Your MERCHANT_ID 
 	protected $_securityKey = '{SECURITY_KEY}'; // Your SECURITY_KEY
 
-	protected $_returnUrl   = '{URL_FOR_REDIRECT_AFTER_PAYMENT}'; // http:://my.site/success?orderId=
+	protected $_returnUrl   = '{URL_FOR_REDIRECT_AFTER_SUCCESS_PAYMENT}'; // http:://my.site/success?orderId=
 	protected $_failUrl     = '{URL_FOR_REDIRECT_AFTER_CANCEL_PAYMENT}'; // http:://my.site/fail
 
 	/**
@@ -46,7 +46,7 @@ class payonlineManagerExample {
 
 	function __construct() {
 
-    //
+		//
 		// Initialize PayOnline
 		//
 		$this->payOnline = new PayOnline(
