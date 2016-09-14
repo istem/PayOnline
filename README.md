@@ -10,7 +10,7 @@ Documentation of API "PayOnline" provided for programmers of clients after the f
 
 # Requirements
 
-Contact support "PayOnline" to get your MERCHANT_ID and SECURITY_KEY, and define the two Callback URLs for the successful payments and the cancel of pay.
+Contact support "PayOnline" to get your MERCHANT_ID and SECURITY_KEY, and define the two Callback URLs of your site for the successful payments and the cancel of pay.
 
 
 # Public variables of the PayOnline class
