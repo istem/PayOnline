@@ -54,6 +54,36 @@ class payonlineManagerExample {
 					$this->_securityKey
 				);
 	}
+	
+	/**
+	 * Redirect to PayOnline payments form (The payment form is on the side "Payonline")
+	 * 
+	 * @param int $userId The USER_ID, for which created payment
+	 * @param float $amount Amount of payment
+	 * 
+	 * @return <nothing> Send "Location" header and exit
+	 */
+	public function goToPayOnline( $userId, $amount  ) {
+		
+		$amount = number_format( round( $amount, 2 ), 2, '.', '' );
+		
+		$orderId = $this->_createBill( $userId, $amount ); // Something like working with database
+
+		$data = array(
+
+			'OrderId'          => $orderId,
+			'Amount'           => $amount,
+			'Currency'         => $this->currency,
+			'OrderDescription' => "Deposit of user N" . $userId,
+			'ReturnUrl'        => $this->_returnUrl . $orderId,
+			'FailUrl'          => $this->_failUrl,
+		);
+		
+		$url = $this->payOnline->getUrl( $data );
+		
+		header('Location: ' . $url);
+		exit();
+	}
 
 	/**
 	 * Create bill and return html-form to make a payment.
