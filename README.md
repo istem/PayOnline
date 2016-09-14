@@ -87,7 +87,8 @@ Define the two callback URLs for the successful payments and the cancel of pay.
 	/**
 	 * Get a separate html-content of form for 3DS-request to issuing bank.
 	 *
-	 * @param string $callbackUrl URL-address of Shop(Merchant), to which the response will be sent from the bank
+	 * @param string $callbackUrl URL-address of Shop(Merchant), 
+	 *                            to which the response will be sent from the bank
 	 * @param array $data Response data "PayOnline" on the "auth"-transaction (when demand 3DS)
 	 * @param string $formId html-attribute "id" of html-form
 	 * @param string $additionHTML Additional html-content for include into form.
