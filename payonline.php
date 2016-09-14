@@ -156,6 +156,22 @@ class PayOnline {
 	}
 
 	/**
+	 * Returns redirect URL for calling "PayOnline" forms by payments server side
+	 *
+	 * @param array $data Data array, according to API-specification for "Standart"-scheme
+	 *
+	 * @return string URL
+	 */
+	public function getUrl( $data ) {
+
+		$this->_setParams('payment', $data);
+
+		$url = $this->_getUrl( $data );
+
+		return implode('?', $url);
+	}
+
+	/**
 	 * Get a html form for request "PayOnline" interface
 	 *
 	 * @param array $data Data array, according to API-specification for "Standart"-scheme.
@@ -168,15 +184,9 @@ class PayOnline {
 
 		$this->_setParams('payment', $data);
 
-		$action = sprintf( $this->FORM_URL, $this->LANG)
-				. (
-					($this->FORM_TYPE == 'select')?
-						''
-						: ($this->FORM_TYPE? 'select/':'' )
-					)
-				. $this->FORM_TYPE;
+		$url = $this->_getUrl();
 
-		return $this->_getForm($id, $action, $data, $additionHTML);
+		return $this->_getForm($id, $url['action'], $data, $additionHTML);
 	}
 
 	/**
@@ -253,6 +263,28 @@ class PayOnline {
 		}
 
 		return md5( implode('&', $out) );
+	}
+
+	/**
+	 * Returns params for build URL by payments server side
+	 *
+	 * @param array $data Data array, according to API-specification for "Standart"-scheme
+	 * @return array Returns array of [action] - the payments URL, [params] - query params for URL
+	 */
+	private function _getUrl( $data=null ) {
+
+		return array(
+
+			'action' => sprintf( $this->FORM_URL, $this->LANG)
+					. (
+						($this->FORM_TYPE == 'select')?
+							''
+							: ($this->FORM_TYPE? 'select/':'' )
+						)
+					. $this->FORM_TYPE
+				,
+			'params' => http_build_query( (array)$data ),
+		);
 	}
 
 	/**
